@@ -9,7 +9,7 @@ public class ComponentComposite extends Observable implements Product {
   Double price;
   Product parent;
  
-  //still updated right?
+  //Woo! It worked!
   public Product myProduct;
   
   public Product findItem(String toBeFound){
