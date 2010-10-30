@@ -31,7 +31,7 @@ public class DecoratorManager extends Observable implements DecoratorInterface{
 	  
   }
   public Product addGraphics(Product product, int quantity) {
-		  Product graph = product.findItem("graphics");
+		  Product graph = product.findItem("graphicscard");
 		  Product parent = graph.getParent();
 		  RamDecorator decor = new RamDecorator(parent);
 		  product.removeComponent(graph);

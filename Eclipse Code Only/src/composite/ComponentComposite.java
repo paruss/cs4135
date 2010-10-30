@@ -6,34 +6,44 @@ public class ComponentComposite extends Observable implements Product {
   ArrayList<Product> productComponents = new ArrayList<Product>();
   String description;
   String name;
-  Double price;
+  Double price = 0.0;
   Product parent;
  
   //Woo! It worked!
   public Product myProduct;
-  
+  ArrayList <Product> prodComps = productComponents;
+  ArrayList <Product> compos = productComponents;
+  ArrayList <Product> traverse;
   public Product findItem(String toBeFound){
 	 /*Iterate through the composite structure and return a reference
 	  * to the product matching the string name
-	  */
- 	  Iterator iterator = productComponents.iterator();
+	  */ 
+	 
+	  
+	  Iterator<Product> iterator = productComponents.iterator();
 	  while (iterator.hasNext()){
+		  iterator = compos.iterator();
 		  Product product =
 			  (Product)iterator.next();
 		  String compname = product.getName();
-		  System.out.println(compname + toBeFound);
+		  System.out.println("Is" + compname + toBeFound + "?");
 		  if (compname.equals(toBeFound))
 		  return product;
+		  if (product.getName() == "composite")
+		  {
+			  traverse.add(product);
+		
+		  }	  
 	
+  	}
+	  compos = traverse.get(1).getChildren();
+	  findItem(toBeFound);	
+	  return null;
+		  
 	  }
-	     
-	     return null;
-	  }
-  
-  public Product getChild(int i) {
-	  
-  return (Product) productComponents.get(i);
 
+  public ArrayList<Product> getChildren() {
+	return productComponents;  
   }
 
   public void removeComponent(Product product) {
@@ -61,7 +71,21 @@ public class ComponentComposite extends Observable implements Product {
 
 @Override
 public double getPrice() {
-	return 0;
+	 ArrayList <Product> children = this.getChildren();
+  	 int i = children.size();
+  	 int j = 0;
+  	
+	  while(i != 0){  
+	  	 Product child = children.get(j);
+	  	 RAM ram = new RAM();
+	  	 System.out.println(ram.getPrice() + child.getPrice());
+		 price = price + child.getPrice();
+		 j--;
+		 i--;
+		 return price;
+	  }
+return (Double) null;
+	  
 }
 @Override
 public void setPrice(double price) {

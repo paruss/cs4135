@@ -1,4 +1,7 @@
 package composite;
+
+import java.util.ArrayList;
+
 public class Screen implements Product {
 	Product parent;
 	@Override
@@ -37,5 +40,10 @@ public class Screen implements Product {
 
 	public void setName(String name) {
 	
+	}
+	@Override
+	public ArrayList<Product> getChildren() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

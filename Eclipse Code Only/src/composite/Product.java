@@ -1,5 +1,7 @@
 package composite;
 
+import java.util.ArrayList;
+
 public interface Product {
 
   public double getPrice();
@@ -12,7 +14,7 @@ public interface Product {
 
   public void removeComponent(Product productComponent);
   
-  public Product getChild(int i);
+  public ArrayList<Product> getChildren();
   
   public Product getParent();
   

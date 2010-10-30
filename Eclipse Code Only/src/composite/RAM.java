@@ -1,7 +1,9 @@
 package composite;
+
+import java.util.ArrayList;
+
 public class RAM implements RamInterface, Product {
 	Product parent;
-	@Override
 	public double getPrice() {
 		return 30.00;
 	}
@@ -20,10 +22,6 @@ public class RAM implements RamInterface, Product {
 	public void removeComponent(Product product ) {	
 	}
 
-	@Override
-	public Product getChild(int i) {
-		return null;
-	}
 
 	@Override
 	public Product findItem(String toBeFound) {
@@ -41,6 +39,12 @@ public class RAM implements RamInterface, Product {
 
 	@Override
 	public void setName(String name) {		
+	}
+
+	@Override
+	public ArrayList<Product> getChildren() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

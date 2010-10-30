@@ -9,6 +9,8 @@ import controller.*;
 import decorator.*;
 
 import javax.swing.JOptionPane;
+
+import composite.RAM;
 /**
  *
  * @author patrickrussell
@@ -69,20 +71,26 @@ public class Main {
        	    null, "Complete the sentence:\n"
        	    + "\"Green eggs and...\"","HUH", JOptionPane.PLAIN_MESSAGE,
        	    null, possibilities,"RAM");
+		
 			if (s == "RAM"){
+			
 			DecoratorManager d = new DecoratorManager();
-			System.out.println(transManager.productList.size() + transManager.productList.get(1).getName());
-			d.decorateProduct(transManager.productList.get(1),ComponentEnum.RAM, 1);
+			System.out.println(transManager.productList.size() + transManager.productList.get(0).getName());
+			d.decorateProduct(transManager.productList.get(0),ComponentEnum.RAM, 1);
+			System.out.println(transManager.productList.get(0).getPrice());
+			
 			}
 			else if (s == "Graphics Card"){
 			DecoratorManager d = new DecoratorManager();
-			d.decorateProduct(transManager.productList.get(1),ComponentEnum.GRAPHICSCARD, 1);
+			d.decorateProduct(transManager.productList.get(0),ComponentEnum.GRAPHICSCARD, 1);
 			}
 			else if (s == "Hard Drive"){
 			DecoratorManager d = new DecoratorManager();
 			
-			d.decorateProduct(transManager.productList.get(1),ComponentEnum.HARDDRIVE, 1);	
-		    System.out.println("Success" + "/t" + transManager.productList.get(1).getName());
+			d.decorateProduct(transManager.productList.get(0),ComponentEnum.HARDDRIVE, 1);
+			System.out.println(transManager.productList.get(0).getPrice());
+		    System.out.println("Success" + "/t" + transManager.productList.get(0).getName());
+		    
 		    
 			}
 			

@@ -1,4 +1,7 @@
 package composite;
+
+import java.util.ArrayList;
+
 public class SoundCard implements Product {
 	Product parent;
     double price = 40.00;
@@ -12,9 +15,6 @@ public class SoundCard implements Product {
 	public void removeComponent(Product product ) {		
 	}
 
-	public Product getChild(int i) {
-		return null;
-	}
 
 	public String getName() {
 		return "soundcard";
@@ -39,6 +39,12 @@ public class SoundCard implements Product {
 	@Override
 	public void setName(String name) {
 		
+	}
+
+	@Override
+	public ArrayList<Product> getChildren() {
+		// TODO Auto-generated method stub
+		return null;
 	}
     
 

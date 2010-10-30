@@ -38,9 +38,11 @@ public class NewTest {
 	}
 
 	@Test
-	public void testChooseProduct() {
-		ProductFactory factory = new ComputerFactory();
-		assertNotNull(factory.createProduct(ProductTypeEnum.DESKTOP));
+	public void testAddProductToList() {
+		
+		transManager.addProductToList(ProductTypeEnum.DESKTOP, 1);
+		//ProductFactory factory = new ComputerFactory();
+		assertNotNull(transManager.productList.indexOf(0));
 		//fail("Not yet implemented");
 	}
 

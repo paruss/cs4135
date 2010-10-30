@@ -1,4 +1,7 @@
 package composite;
+
+import java.util.ArrayList;
+
 public class RamDecorator implements RamInterface {
     Product product;
     Product parent;
@@ -24,32 +27,41 @@ public class RamDecorator implements RamInterface {
 		
 	}
 	@Override
-	public Product getChild(int i) {
+	public void setName(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setPrice(double price) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public ArrayList<Product> getChildren() {
+		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public String getName() {
-		return "ram";
-	}
-	@Override
-	public Product findItem(String toBeFound) {
-		return null;
-	}
-	@Override
-	public void setPrice(double price) {		
 	}
 	@Override
 	public Product getParent() {
-		return parent;
+		// TODO Auto-generated method stub
+		return null;
 	}
 	@Override
 	public void setParent(Product product) {
-		parent = product;
-	}
-	@Override
-	public void setName(String name) {
+		// TODO Auto-generated method stub
 		
 	}
-	
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Product findItem(String toBeFound) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
     }

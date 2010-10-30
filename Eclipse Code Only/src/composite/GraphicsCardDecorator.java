@@ -1,4 +1,7 @@
 package composite;
+
+import java.util.ArrayList;
+
 public class GraphicsCardDecorator  implements GraphicsCardInterface {
 	
 	
@@ -24,10 +27,6 @@ public class GraphicsCardDecorator  implements GraphicsCardInterface {
 		
 	}
 
-	@Override
-	public Product getChild(int i) {
-		return null;
-	}
 
 	@Override
 	public String getName() {
@@ -56,6 +55,11 @@ public class GraphicsCardDecorator  implements GraphicsCardInterface {
 	@Override
 	public void setName(String name) {
 		
+	}
+	@Override
+	public ArrayList<Product> getChildren() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

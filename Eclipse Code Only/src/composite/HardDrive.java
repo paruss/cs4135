@@ -1,4 +1,7 @@
 package composite;
+
+import java.util.ArrayList;
+
 public class HardDrive implements HardDriveInterface {
 	
 	Product parent;
@@ -21,10 +24,6 @@ public class HardDrive implements HardDriveInterface {
 		
 	}
 
-	@Override
-	public Product getChild(int i) {
-		return null;
-	}
 
 	@Override
 	public String getName() {
@@ -54,5 +53,11 @@ public class HardDrive implements HardDriveInterface {
 	@Override
 	public void setName(String name) {
 		
+	}
+
+	@Override
+	public ArrayList<Product> getChildren() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

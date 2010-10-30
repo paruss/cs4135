@@ -1,4 +1,7 @@
 package composite;
+
+import java.util.ArrayList;
+
 public class CPU implements Product {
 	Product parent;
 	@Override
@@ -17,10 +20,6 @@ public class CPU implements Product {
 		
 	}
 
-	@Override
-	public Product getChild(int i) {
-		return null;
-	}
 
 	@Override
 	public String getName() {
@@ -52,6 +51,12 @@ public class CPU implements Product {
 	public void setName(String name) {
 
 		
+	}
+
+	@Override
+	public ArrayList<Product> getChildren() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

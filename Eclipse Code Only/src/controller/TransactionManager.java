@@ -62,7 +62,7 @@ ComponentEnum componentEnum;
  
 
 public void update(Observable o, Object arg) {
-		System.out.println("observer called");
+		
 		updateTotal(region);
 		//when update is called by an observer we call this method to update the vat
 	
