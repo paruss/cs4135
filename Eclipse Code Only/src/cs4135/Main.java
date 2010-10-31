@@ -5,6 +5,8 @@
 
 package cs4135;
 import java.io.*;
+import java.text.DecimalFormat;
+
 import controller.*;
 import decorator.*;
 
@@ -68,15 +70,18 @@ public class Main {
        
 		String s = (String)JOptionPane.showInputDialog(
        	                    
-       	    null, "Complete the sentence:\n"
-       	    + "\"Green eggs and...\"","HUH", JOptionPane.PLAIN_MESSAGE,
+       	    null, ""
+       	    + "\"Please select what component you want to add\"","Additional component selection", JOptionPane.PLAIN_MESSAGE,
        	    null, possibilities,"RAM");
-		
-			if (s == "RAM"){
+			String stQuantity = JOptionPane.showInputDialog("You have " + transManager.getNumber() + "\t products in your basket. \n" +
+					"which one do you want to add the component to?");
+			int computertodecorate = Integer.parseInt(stQuantity);
 			
-			DecoratorManager d = new DecoratorManager();
+			if (s == "RAM"){
+				transManager.decorateProduct(transManager.productList.get(computertodecorate),  ComponentEnum.RAM);
+			
 			System.out.println(transManager.productList.size() + transManager.productList.get(0).getName());
-			d.decorateProduct(transManager.productList.get(0),ComponentEnum.RAM, 1);
+			
 			System.out.println(transManager.productList.get(0).getPrice());
 			
 			}
@@ -93,6 +98,9 @@ public class Main {
 		    
 		    
 			}
+			DecimalFormat fmtObj = new DecimalFormat("####0.00");
+			String roundedTotal = fmtObj.format(transManager.total);
+			JOptionPane.showMessageDialog(null,"The pre Vat total is\t" + transManager.subTotal + "\nThe total price is " + roundedTotal);
 			
 		}
 

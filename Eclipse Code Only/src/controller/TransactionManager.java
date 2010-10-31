@@ -10,19 +10,24 @@ public class TransactionManager implements Observer {
   public Region Region;
   public ArrayList<Product> productList = new ArrayList<Product>();//List of products 
   private RegionEnum region; 
-  public Float subTotal = 1.0f;
-  public Float total = 1.0f; 
+  public double subTotal = 1.0;
+  public double total = 1.0; 
   Product found = null;
   
   public RegionEnum getRegion(){
       return region;
+  }
+  
+  public void decorateProduct(Product product, ComponentEnum componentEnum){
+	  DecoratorManager d = new DecoratorManager();
+	  d.decorateProduct(product, componentEnum, 1);
   }
    
   public int getNumber() {
       return productList.size(); //number if products in list
   }
     
- public void addProductToList(ProductTypeEnum productTypeEnum, int quantity) {
+  public void addProductToList(ProductTypeEnum productTypeEnum, int quantity) {
 	 /* this function creates a new computer factory and loops creating the specified
 	  * number of prodcuts.
 	  */
@@ -30,10 +35,16 @@ public class TransactionManager implements Observer {
 	 int i = quantity;
 	 while (i > 0){
 		  System.out.println(productTypeEnum); 
-		  productList.add(productFactory.createProduct(productTypeEnum));
+		  Product newproduct = productFactory.createProduct(productTypeEnum);
+		  productList.add(newproduct);
 		  i--;
+		  double newitemprice = newproduct.getPrice();
+		  updateSubTotal(newitemprice);
 	  	  }
   } 
+  public void updateSubTotal(double newitemprice){
+	  subTotal += newitemprice;
+  }
 
   public void updateTotal(RegionEnum regionEnum){
 	  	if (RegionEnum.IRELAND == regionEnum){
@@ -50,6 +61,7 @@ public class TransactionManager implements Observer {
 	  	region = newRegion;	
 	   
   }
+  
   
 DecoratorInterface decoratorInterface;
 ComponentEnum componentEnum; 

@@ -46,27 +46,18 @@ public class ComputerFactory extends Observable implements ProductFactory  {
 		motherboard.addComponent(motherboard, cpu);
 		motherboard.addComponent(motherboard, sound);
 		motherboard.addComponent(motherboard, graphics);
-
-		
-
-		
+	
 		Product chassis = new ComponentComposite();
 		((ComponentComposite) chassis).addObserver(transactionManagerRef);
 		
 		chassis.addComponent(chassis, motherboard);
 		chassis.addComponent(chassis, harddrive);
-		
-		
-		
+			
 		Product computer = new ComponentComposite();
 		((ComponentComposite) computer).addObserver(transactionManagerRef);
 		
 		computer.addComponent(computer, chassis);
 		computer.addComponent(computer, screen);
-		
-
-		
-		
 		return computer;
         
   }

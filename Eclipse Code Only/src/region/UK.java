@@ -2,9 +2,9 @@ package region;
 
 public class UK implements Region {
 
-	private Float vatRate = 0.2f;
+	private double vatRate = 1.2;
 	
-	public float getVat(Float subTotal){
+	public double getVat(double subTotal){
 		
 		return subTotal * vatRate;
 	}

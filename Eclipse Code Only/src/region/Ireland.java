@@ -1,9 +1,9 @@
 package region;
 public class Ireland implements Region {
 	
-	private Float vatRate = 0.21f;
+	private double vatRate = 1.21;
 	
-	public float getVat(Float subTotal){
+	public double getVat(double subTotal){
 		
 		return subTotal * vatRate;
 	}

@@ -8,18 +8,27 @@ public class ComponentComposite extends Observable implements Product {
   String name;
   Double price = 0.0;
   Product parent;
- 
-  //Woo! It worked!
+
   public Product myProduct;
-  ArrayList <Product> prodComps = productComponents;
-  ArrayList <Product> compos = productComponents;
-  ArrayList <Product> traverse;
+  ArrayList <Product> currentRow = productComponents;
+  ArrayList <Product> traverse = new ArrayList <Product>();
   public Product findItem(String toBeFound){
 	 /*Iterate through the composite structure and return a reference
 	  * to the product matching the string name
-	  */ 
-	 
-	  
+	  */
+	  int i = currentRow.size();
+	  int j = 0;
+	  while (i!=j){
+		  String compname = currentRow.get(j).getName();
+		  Product product = currentRow.get(j);
+		  if (compname.equals(toBeFound)){ 
+		  return product;
+		  }
+		  else if (product.getName() == "composite")
+			  traverse.add(product);	 
+		  j++;
+	  }
+	  /*
 	  Iterator<Product> iterator = productComponents.iterator();
 	  while (iterator.hasNext()){
 		  iterator = compos.iterator();
@@ -36,9 +45,13 @@ public class ComponentComposite extends Observable implements Product {
 		  }	  
 	
   	}
-	  compos = traverse.get(1).getChildren();
-	  findItem(toBeFound);	
-	  return null;
+  	*/
+	  Product product = traverse.get(0);
+	  currentRow = product.getChildren();
+	  traverse.remove(0);
+	  Product found = findItem(toBeFound);	
+	  return found;
+	  //return null;
 		  
 	  }
 
