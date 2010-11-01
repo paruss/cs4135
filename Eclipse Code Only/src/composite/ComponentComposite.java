@@ -1,17 +1,20 @@
 
  package composite;
-import java.util.*;
+ import java.util.*;
 
-public class ComponentComposite extends Observable implements Product {
+  public class ComponentComposite extends Observable implements Product {
+	  
+	  
   ArrayList<Product> productComponents = new ArrayList<Product>();
   String description;
   String name;
   Double price = 0.0;
   Product parent;
-
   public Product myProduct;
   ArrayList <Product> currentRow = productComponents;
   ArrayList <Product> traverse = new ArrayList <Product>();
+  
+  
   public Product findItem(String toBeFound){
 	 /*Iterate through the composite structure and return a reference
 	  * to the product matching the string name
@@ -21,12 +24,12 @@ public class ComponentComposite extends Observable implements Product {
 	  while (i!=j){
 		  String compname = currentRow.get(j).getName();
 		  Product product = currentRow.get(j);
-		  if (compname.equals(toBeFound)){ 
-		  return product;
+		  	if (compname.equals(toBeFound)){ 
+		  		return product;
 		  }
-		  else if (product.getName() == "composite")
+		  	else if (product.getName() == "composite")
 			  traverse.add(product);	 
-		  j++;
+		  		j++;
 	  }
 	  /*
 	  Iterator<Product> iterator = productComponents.iterator();
@@ -82,8 +85,7 @@ public class ComponentComposite extends Observable implements Product {
 	  return name;
   }
 
-@Override
-public double getPrice() {
+  public double getPrice() {
 	 ArrayList <Product> children = this.getChildren();
   	 int i = children.size();
   	 int j = 0;
@@ -97,25 +99,25 @@ public double getPrice() {
 		 i--;
 		 return price;
 	  }
-return (Double) null;
+  return (Double) null;
 	  
 }
 @Override
-public void setPrice(double price) {
+  public void setPrice(double price) {
 	
 	
 }
 @Override
-public Product getParent() {
+  public Product getParent() {
 	
 	return parent;
 }
 @Override
-public void setParent(Product product) {
+  public void setParent(Product product) {
 	parent = product;
 }
 
-public void setName(String named){
+  public void setName(String named){
 	name = named;
 }
 
