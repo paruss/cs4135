@@ -1,10 +1,17 @@
+
 package controller;
 import factory.*;
 import java.util.*;
+
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebService;
+
 import region.*;
 import composite.*;
 import decorator.*;
 
+@WebService(name = "TransactionManager", serviceName = "TransactionManagerService")
 public class TransactionManager implements Observer {
 
   public Region Region;
@@ -14,20 +21,24 @@ public class TransactionManager implements Observer {
   public double total = 1.0; 
   Product found = null;
   
-  public RegionEnum getRegion(){
+  @WebMethod()
+public RegionEnum getRegion(){
       return region;
   }
   
-  public void decorateProduct(Product product, ComponentEnum componentEnum){
+  @WebMethod()
+public void decorateProduct(@WebParam(name = "product") Product product, @WebParam(name = "componentEnum") ComponentEnum componentEnum){
 	  DecoratorManager d = new DecoratorManager();
 	  d.decorateProduct(product, componentEnum, 1);
   }
    
-  public int getNumber() {
+  @WebMethod()
+public int getNumber() {
       return productList.size(); //number if products in list
   }
     
-  public void addProductToList(ProductTypeEnum productTypeEnum, int quantity) {
+  @WebMethod()
+public void addProductToList(@WebParam(name = "productTypeEnum") ProductTypeEnum productTypeEnum, @WebParam(name = "quantity") int quantity) {
 	 /* this function creates a new computer factory and loops creating the specified
 	  * number of prodcuts.
 	  */
@@ -42,11 +53,13 @@ public class TransactionManager implements Observer {
 		  updateSubTotal(newitemprice);
 	  	  }
   } 
-  public void updateSubTotal(double newitemprice){
+  @WebMethod()
+public void updateSubTotal(@WebParam(name = "newitemprice") double newitemprice){
 	  subTotal += newitemprice;
   }
 
-  public void updateTotal(RegionEnum regionEnum){
+  @WebMethod()
+public void updateTotal(@WebParam(name = "regionEnum") RegionEnum regionEnum){
 	  	if (RegionEnum.IRELAND == regionEnum){
 	  		Region ireland = new Ireland();
 	  		 total = ireland.getVat(subTotal);
@@ -56,7 +69,8 @@ public class TransactionManager implements Observer {
 	  		total = uk.getVat(subTotal);
 	  	}
   }
-  public void setRegion(RegionEnum newRegion) {
+  @WebMethod()
+public void setRegion(@WebParam(name = "newRegion") RegionEnum newRegion) {
 
 	  	region = newRegion;	
 	   
@@ -66,14 +80,16 @@ public class TransactionManager implements Observer {
 DecoratorInterface decoratorInterface;
 ComponentEnum componentEnum; 
 
-  public void upgradeProduct(Product product, ComponentEnum componentEnum, int quantity) {
+  @WebMethod()
+public void upgradeProduct(@WebParam(name = "product") Product product, @WebParam(name = "componentEnum") ComponentEnum componentEnum, @WebParam(name = "quantity") int quantity) {
 	  //adds an additional component to a product using the decorator
 	   decoratorInterface.decorateProduct(product, componentEnum, quantity);
 
   }
  
 
-public void update(Observable o, Object arg) {
+@WebMethod()
+public void update(@WebParam(name = "o") Observable o, @WebParam(name = "arg") Object arg) {
 		
 		updateTotal(region);
 		//when update is called by an observer we call this method to update the vat
