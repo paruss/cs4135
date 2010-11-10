@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ServerService WSDL service -->
+
+  <service name="Server" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://controller"/>
+      <parameter name="wsdlServiceElement" value="ServerService"/>
+      <parameter name="schemaQualified" value="http://controller"/>
+      <parameter name="wsdlServicePort" value="Server"/>
+      <parameter name="className" value="controller.Server"/>
+      <parameter name="wsdlPortType" value="Server"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://controller" name="add" qname="operNS:add" soapAction="">
+        <parameter xmlns:pns="http://controller" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:producttoadd" type="tns:anyType"/>
+      </operation>
+      <parameter name="allowedMethods" value="add"/>
+
+      <typeMapping xmlns:ns="http://controller" qname="ns:&gt;addResponse" type="java:controller.AddResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>
