@@ -4,6 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 import composite.*;
 import controller.*;
+import factory.Xthread.componentBank;
 
 class Xthread extends Thread {
 
@@ -13,6 +14,7 @@ class Xthread extends Thread {
 	Xthread(componentBank bank1, boolean composite){
 		bank = bank1; compo = composite;
 	}
+
 	
 	 class componentBank {
 		  
@@ -26,7 +28,27 @@ class Xthread extends Thread {
 		  volatile Product computer;
 		  volatile Product harddrive;
 		  
+	 }
+		public void run(){
+			if (compo = true){
+				System.out.println("Components being created");
+				bank.ram = new RAM();
+				bank.cpu = new CPU();
+				bank.soundcard = new SoundCard();
+				bank.grapics = new GraphicsCard();
+				}
+				else if (compo == false){
+				System.out.println("composite thread");
+				bank.computer = new ComponentComposite();
+				bank.chassis = new ComponentComposite();
+				bank.motherboard = new ComponentComposite();
+				}
+		
+
 	}
+}
+		
+
 public class ComputerFactory extends Observable implements ProductFactory  {
 
   public ProductTypeEnum newProduct;
@@ -61,27 +83,7 @@ public class ComputerFactory extends Observable implements ProductFactory  {
 	  Thread thread2 = new Thread (new Xthread(bank, true));
 	  thread1.run();
 	  thread2.run();
-	
-	  
-
-			
-			public void run(){
-				if (compo = true){
-					System.out.println("Components being created");
-					bank.ram = new RAM();
-					bank.cpu = new CPU();
-					bank.soundcard = new SoundCard();
-					bank.grapics = new GraphicsCard();
-					}
-					else if (compo == false){
-					System.out.println("composite thread");
-					bank.computer = new ComponentComposite();
-					bank.chassis = new ComponentComposite();
-					bank.motherboard = new ComponentComposite();
-					}
-
-		}
-			  
+		  
 	
 		((ComponentComposite) bank.motherboard).addObserver(transactionManagerRef);
 		
