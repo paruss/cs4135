@@ -31,75 +31,64 @@ public class ComputerFactory extends Observable implements ProductFactory  {
 	}
   
   public Product createDesktopComputer() {
-	  	//construct the composite tree with our components
-		Product motherboard = new ComponentComposite();
-		Product ram = new RAM();
-		Product cpu = new CPU();
-		Product sound = new SoundCard();
-		Product screen = new Screen();
-		Product graphics = new GraphicsCard();
-		Product harddrive = new HardDrive();
+	    Store compo = new Store();
+	    Store comp = new Store();
+	  	Thread t1 = new CreatorThread(compo, true);
+	  	Thread t2 = new CreatorThread(comp, false);
+	  	t1.run();
+	  	t2.run();
+
+		((ComponentComposite) compo.motherboard).addObserver(transactionManagerRef);
 		
-		((ComponentComposite) motherboard).addObserver(transactionManagerRef);
-		
-		motherboard.addComponent(motherboard, ram);
-		motherboard.addComponent(motherboard, cpu);
-		motherboard.addComponent(motherboard, sound);
-		motherboard.addComponent(motherboard, graphics);
+		compo.motherboard.addComponent(compo.motherboard, comp.ram);
+		compo.motherboard.addComponent(compo.motherboard, comp.cpu);
+		compo.motherboard.addComponent(compo.motherboard, comp.sound);
+		compo.motherboard.addComponent(compo.motherboard, comp.graphics);
 	
-		Product chassis = new ComponentComposite();
-		((ComponentComposite) chassis).addObserver(transactionManagerRef);
 		
-		chassis.addComponent(chassis, motherboard);
-		chassis.addComponent(chassis, harddrive);
+		((ComponentComposite) compo.chassis).addObserver(transactionManagerRef);
+		
+		compo.chassis.addComponent(compo.chassis, compo.motherboard);
+		compo.chassis.addComponent(compo.chassis, comp.harddrive);
 			
-		Product computer = new ComponentComposite();
-		((ComponentComposite) computer).addObserver(transactionManagerRef);
 		
-		computer.addComponent(computer, chassis);
-		computer.addComponent(computer, screen);
-		return computer;
+		((ComponentComposite) compo.computer).addObserver(transactionManagerRef);
+		
+		compo.computer.addComponent(compo.computer, compo.chassis);
+		compo.computer.addComponent(compo.computer, comp.screen);
+		return compo.computer;
         
   }
 
   public Product createLaptopComputer() {
   
 
-	Product motherboard = new ComponentComposite();
-	
-	Product ram = new RAM();
-	Product cpu = new CPU();
-	Product sound = new SoundCard();
-	Product screen = new Screen();
-	Product graphics = new GraphicsCard();
-	Product harddrive = new HardDrive();
-	
-	((ComponentComposite) motherboard).addObserver(transactionManagerRef);
-	
-	motherboard.addComponent(motherboard, ram);
-	motherboard.addComponent(motherboard, cpu);
-	motherboard.addComponent(motherboard, sound);
-	motherboard.addComponent(motherboard, graphics);
-	
-	
-	
-	Product chassis = new ComponentComposite();
-	
-	((ComponentComposite) chassis).addObserver(transactionManagerRef);
-	
-	chassis.addComponent(chassis, motherboard);
+	    Store compo = new Store();
+	    Store comp = new Store();
+	  	Thread t1 = new CreatorThread(compo, true);
+	  	Thread t2 = new CreatorThread(comp, false);
+	  	t1.run();
+	  	t2.run();
 
-	chassis.addComponent(chassis, harddrive);
-	Product computer = new ComponentComposite();
+		((ComponentComposite) compo.motherboard).addObserver(transactionManagerRef);
+		
+		compo.motherboard.addComponent(compo.motherboard, comp.ram);
+		compo.motherboard.addComponent(compo.motherboard, comp.cpu);
+		compo.motherboard.addComponent(compo.motherboard, comp.sound);
+		compo.motherboard.addComponent(compo.motherboard, comp.graphics);
 	
-	((ComponentComposite) computer).addObserver(transactionManagerRef);
-	
-	computer.addComponent(computer, chassis);
-	computer.addComponent(computer,screen);
-	
-
-
-	return computer;
+		
+		((ComponentComposite) compo.chassis).addObserver(transactionManagerRef);
+		
+		compo.chassis.addComponent(compo.chassis, compo.motherboard);
+		compo.chassis.addComponent(compo.chassis, comp.harddrive);
+			
+		
+		((ComponentComposite) compo.computer).addObserver(transactionManagerRef);
+		
+		compo.computer.addComponent(compo.computer, compo.chassis);
+		compo.computer.addComponent(compo.computer, comp.screen);
+		return compo.computer;
   } 
 
 }
