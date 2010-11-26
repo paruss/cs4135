@@ -10,7 +10,7 @@ import org.junit.Test;
 import composite.Product;
 
 import controller.*;
-import factory.ComputerFactory;
+import factory.ComputerFactoryThread;
 import factory.ProductFactory;
 public class ThreadTester {
 
@@ -23,7 +23,7 @@ public class ThreadTester {
 	
 	@Test
 	public void testAddProductToList() {
-		ComputerFactory computer = new ComputerFactory(transManager);
+		ComputerFactoryThread computer = new ComputerFactoryThread(transManager);
 		Product comp = computer.createDesktopComputer();
 		//ProductFactory factory = new ComputerFactory();
 		assertNotNull(comp);

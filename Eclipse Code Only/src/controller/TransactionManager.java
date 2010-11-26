@@ -42,7 +42,7 @@ public void addProductToList(@WebParam(name = "productTypeEnum") ProductTypeEnum
 	 /* this function creates a new computer factory and loops creating the specified
 	  * number of prodcuts.
 	  */
-	 ProductFactory productFactory = new ComputerFactory(this);
+	 ProductFactory productFactory = new ComputerFactoryThread(this);
 	 int i = quantity;
 	 while (i > 0){
 		  System.out.println(productTypeEnum); 

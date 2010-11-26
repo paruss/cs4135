@@ -1,12 +1,11 @@
 package cs4135;
 
 import java.io.IOException;
-import java.util.Observer;
 
 import composite.Product;
 import controller.TransactionManager;
 
-import factory.ComputerFactory;
+import factory.ComputerFactoryThread;
 import factory.ComputerFactoryNoThread;
 
 public class ThreadTester {
@@ -18,7 +17,7 @@ public class ThreadTester {
 		while (i != 0){
 			
 		long starttimeThread = System.nanoTime();
-		ComputerFactory computer = new ComputerFactory(transManager);
+		ComputerFactoryThread computer = new ComputerFactoryThread(transManager);
 		Product comp = computer.createDesktopComputer();
 		long endtimeThread = System.nanoTime();
 		
